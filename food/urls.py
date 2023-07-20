@@ -15,5 +15,21 @@ urlpatterns = [
     path('category/delete/<int:pk>/', CategoryDeleteView.as_view()),
 ]
 
+from .views.subcategory import (
+    SubCategoryCreateView,
+    SubCategoryDeleteView,
+    SubCategoryDetailView,
+    SubCategoryListView,
+    SubCategoryUpdateView,
+)
+
+urlpatterns += [
+    path('subcategory/create/', SubCategoryCreateView.as_view()),
+    path('subcategory/list/', SubCategoryListView.as_view()),
+    path('subcategory/detail/<int:pk>/', SubCategoryDetailView.as_view()),
+    path('subcategory/update/<int:pk>/', SubCategoryUpdateView.as_view()),
+    path('subcategory/delete/<int:pk>/', SubCategoryDeleteView.as_view()),
+]
+
     
     
