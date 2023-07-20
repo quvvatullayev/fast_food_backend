@@ -47,5 +47,21 @@ urlpatterns += [
     path('product/delete/<int:pk>/', ProductDeleteView.as_view()),
 ]
 
+from .views.order import (
+    OrderCreateView,
+    OrderDeleteView,
+    OrderDetailView,
+    OrderListView,
+    OrderUpdateView,
+)
+
+urlpatterns += [
+    path('order/create/', OrderCreateView.as_view()),
+    path('order/list/', OrderListView.as_view()),
+    path('order/detail/<int:pk>/', OrderDetailView.as_view()),
+    path('order/update/<int:pk>/', OrderUpdateView.as_view()),
+    path('order/delete/<int:pk>/', OrderDeleteView.as_view()),
+]
+
     
     
