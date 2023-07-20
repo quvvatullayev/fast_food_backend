@@ -26,5 +26,6 @@ class Order(models.Model):
     address = models.CharField(max_length=255)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     count = models.IntegerField()
+    hour = models.DateTimeField()
     def __str__(self):
         return self.name
