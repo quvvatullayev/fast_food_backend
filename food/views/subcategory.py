@@ -11,49 +11,45 @@ from ..serializers import (
 )
 
 class SubCategoryCreateView(APIView):
-    
-        @swagger_auto_schema(request_body=SubCategorySerializer)
-        def post(self, request: Request) -> Response:
-            serializer = SubCategorySerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors)
+    @swagger_auto_schema(request_body=SubCategorySerializer)
+    def post(self, request: Request) -> Response:
+        serializer = SubCategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors)
         
 class SubCategoryListView(APIView):
-        
-            @swagger_auto_schema(responses={200: SubCategorySerializer(many=True)})
-            def get(self, request: Request) -> Response:
-                subcategories = SubCategory.objects.all()
-                serializer = SubCategorySerializer(subcategories, many=True)
-                return Response(serializer.data)
+    @swagger_auto_schema(responses={200: SubCategorySerializer(many=True)})
+    def get(self, request: Request) -> Response:
+        subcategories = SubCategory.objects.all()
+        serializer = SubCategorySerializer(subcategories, many=True)
+        return Response(serializer.data)
             
 class SubCategoryDetailView(APIView):
-            
-                @swagger_auto_schema(responses={200: SubCategorySerializer()})
-                def get(self, request: Request, pk: int) -> Response:
-                    subcategory = SubCategory.objects.get(pk=pk)
-                    serializer = SubCategorySerializer(subcategory)
-                    return Response(serializer.data)
+    @swagger_auto_schema(responses={200: SubCategorySerializer()})
+    def get(self, request: Request, pk: int) -> Response:
+        subcategory = SubCategory.objects.get(pk=pk)
+        serializer = SubCategorySerializer(subcategory)
+        return Response(serializer.data)
                 
 class SubCategoryUpdateView(APIView):
-                
-                @swagger_auto_schema(request_body=SubCategorySerializer)
-                def put(self, request: Request, pk: int) -> Response:
-                    subcategory = SubCategory.objects.get(pk=pk)
-                    serializer = SubCategorySerializer(instance=subcategory, data=request.data)
-                    if serializer.is_valid():
-                        serializer.save()
-                        return Response(serializer.data)
-                    return Response(serializer.errors)
+    @swagger_auto_schema(request_body=SubCategorySerializer)
+    def put(self, request: Request, pk: int) -> Response:
+        subcategory = SubCategory.objects.get(pk=pk)
+        serializer = SubCategorySerializer(instance=subcategory, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
                 
 class SubCategoryDeleteView(APIView):
                 
-                @swagger_auto_schema(responses={204: 'No Content'})
-                def delete(self, request: Request, pk: int) -> Response:
-                    subcategory = SubCategory.objects.get(pk=pk)
-                    subcategory.delete()
-                    return Response(status=status.HTTP_204_NO_CONTENT)
+    @swagger_auto_schema(responses={204: 'No Content'})
+    def delete(self, request: Request, pk: int) -> Response:
+        subcategory = SubCategory.objects.get(pk=pk)
+        subcategory.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
     
     
