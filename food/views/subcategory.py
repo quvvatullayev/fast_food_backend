@@ -21,8 +21,8 @@ class SubCategoryCreateView(APIView):
         
 class SubCategoryListView(APIView):
     @swagger_auto_schema(responses={200: SubCategorySerializer(many=True)})
-    def get(self, request: Request) -> Response:
-        subcategories = SubCategory.objects.all()
+    def get(self, request: Request, pk:int) -> Response:
+        subcategories = SubCategory.objects.filter(category_id=pk)
         serializer = SubCategorySerializer(subcategories, many=True)
         return Response(serializer.data)
             

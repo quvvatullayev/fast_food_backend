@@ -25,7 +25,7 @@ from .views.subcategory import (
 
 urlpatterns += [
     path('subcategory/create/', SubCategoryCreateView.as_view()),
-    path('subcategory/list/', SubCategoryListView.as_view()),
+    path('subcategory/list/<int:pk>/', SubCategoryListView.as_view()),
     path('subcategory/detail/<int:pk>/', SubCategoryDetailView.as_view()),
     path('subcategory/update/<int:pk>/', SubCategoryUpdateView.as_view()),
     path('subcategory/delete/<int:pk>/', SubCategoryDeleteView.as_view()),
