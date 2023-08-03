@@ -21,10 +21,10 @@ class ProductCreateView(APIView):
             
 class ProductListView(APIView):
     @swagger_auto_schema(responses={200: ProductSerializer(many=True)})
-    def get(self, request: Request) -> Response:
-        products = Product.objects.all()
+    def get(self, request: Request, pk:int) -> Response:
+        products = Product.objects.filter(subcategory=pk)
         serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        return Response({'products': serializer.data})
                     
 class ProductDetailView(APIView):
     @swagger_auto_schema(responses={200: ProductSerializer()})

@@ -41,7 +41,7 @@ from .views.product import (
 
 urlpatterns += [
     path('product/create/', ProductCreateView.as_view()),
-    path('product/list/', ProductListView.as_view()),
+    path('product/list/<int:pk>/', ProductListView.as_view()),
     path('product/detail/<int:pk>/', ProductDetailView.as_view()),
     path('product/update/<int:pk>/', ProductUpdateView.as_view()),
     path('product/delete/<int:pk>/', ProductDeleteView.as_view()),
